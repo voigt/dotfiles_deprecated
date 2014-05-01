@@ -1,0 +1,5 @@
+terraform.tfstate*
+.terraform
+workstation/env.tfvars
+workstation/keep.sh
+*.log

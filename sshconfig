@@ -1,0 +1,135 @@
+Host *
+ AddKeysToAgent yes
+ ForwardAgent yes
+ ServerAliveInterval 240
+# UseKeychain yes
+ IdentityFile ~/.ssh/id_rsa
+
+Host github.com
+  HostName github.com
+  IdentityFile ~/.ssh/github_rsa
+  IdentitiesOnly yes
+
+Host gitlab.com
+  HostName gitlab.com
+  IdentityFile ~/.ssh/gitlab_rsa
+  IdentitiesOnly yes
+
+Host cetus
+  User cv
+  HostName cetus.uberspace.de
+  IdentityFile ~/.ssh/cv_uberspace
+
+Host workstation
+  User root
+  HostName workstation.christophvoigt.com
+  IdentityFile ~/.ssh/github_rsa
+  Port 3222
+
+Host horologium
+  User jmb
+  HostName horologium.uberspace.de
+  IdentityFile ~/.ssh/jmb_uberspace
+
+Host bastion.plint-001
+  StrictHostKeyChecking no
+  HostName 34.255.220.29
+  User cvoigt
+  IdentityFile /Users/c.voigt/.ssh/volkswagen
+  IdentitiesOnly yes
+
+Host bastion.plint-002
+  StrictHostKeyChecking no
+  HostName 34.255.220.29
+  User cvoigt
+  IdentityFile /Users/c.voigt/.ssh/volkswagen
+  IdentitiesOnly yes
+
+Host bastion.plint
+  StrictHostKeyChecking no
+  HostName 34.255.220.29
+  User cvoigt
+  IdentityFile /Users/c.voigt/.ssh/volkswagen
+  IdentitiesOnly yes
+
+Host bastion.approval
+  StrictHostKeyChecking no
+  HostName 52.208.73.187
+  User cvoigt
+  IdentityFile /Users/c.voigt/.ssh/volkswagen
+  IdentitiesOnly yes
+
+Host bastion.preprod-shs
+  StrictHostKeyChecking no
+  HostName 52.208.73.187
+  IdentityFile /Users/c.voigt/.ssh/volkswagen
+  IdentitiesOnly yes
+
+Host bastion.preprod
+  StrictHostKeyChecking no
+  HostName 52.208.73.187
+  User cvoigt
+  IdentityFile /Users/c.voigt/.ssh/volkswagen
+  IdentitiesOnly yes
+
+Host bastion.tui-dev001
+  StrictHostKeyChecking no
+  HostName 52.208.73.187
+  User cvoigt
+  IdentityFile /Users/c.voigt/.ssh/volkswagen
+  IdentitiesOnly yes
+
+Host bastion.tui
+  StrictHostKeyChecking no
+  HostName 52.208.73.187
+  User cvoigt
+  IdentityFile /Users/c.voigt/.ssh/volkswagen
+  IdentitiesOnly yes
+
+Host bastion.tui-demo
+  StrictHostKeyChecking no
+  HostName 52.208.73.187
+  User cvoigt
+  IdentityFile /Users/c.voigt/.ssh/volkswagen
+  IdentitiesOnly yes
+
+Host bastion.live
+  StrictHostKeyChecking no
+  HostName 18.203.165.96
+  User cvoigt
+  IdentityFile /Users/c.voigt/.ssh/volkswagen
+  IdentitiesOnly yes
+
+Host bastion.spr.dev
+  StrictHostKeyChecking no
+  HostName 34.254.213.218
+  User cvoigt
+  IdentityFile /Users/c.voigt/.ssh/volkswagen
+  IdentitiesOnly yes
+
+Host bastion.gs.prod-shs
+  StrictHostKeyChecking no
+  HostName 108.128.114.18
+  User cvoigt
+  IdentityFile /Users/c.voigt/.ssh/volkswagen
+  IdentitiesOnly yes
+
+Host bastion.prod-shs
+  StrictHostKeyChecking no
+  HostName 18.203.165.96
+  User cvoigt
+  IdentityFile /Users/c.voigt/.ssh/volkswagen
+  IdentitiesOnly yes
+
+Host bastion.prelive
+  StrictHostKeyChecking no
+  HostName 52.208.73.187
+  User cvoigt
+  IdentityFile /Users/c.voigt/.ssh/volkswagen
+  IdentitiesOnly yes
+
+Host mgmt-host-tunnel
+  Hostname localhost
+  Port 1122
+  User w1qkibe
+  IdentityFile /Users/c.voigt/.ssh/volkswagen

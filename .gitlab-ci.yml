@@ -1,0 +1,55 @@
+image:
+  name: hashicorp/terraform:light
+  entrypoint:
+    - '/usr/bin/env'
+    - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+
+before_script:
+  # Add Requirements
+  - apk add bash jq
+  - mkdir -p ~/.ssh
+  - chmod 700 ~/.ssh
+  - echo $GITLAB_CI_SSH | base64 -d > ~/.ssh/gitlab-ci_rsa
+  - chmod 400 ~/.ssh/gitlab-ci_rsa
+
+  # Prepare Terraform
+  - cd workstation
+  - rm -rf .terraform terraform.tfstate terraform.tfstate.backup
+  - terraform --version
+
+  # Populate env.tfvars
+  - export DIGITALOCEAN_TOKEN=$(echo $DIGITALOCEAN_TOKEN | base64 -d)
+  - echo "ssh_key_name = \"$(echo $SSH_KEY_NAME | base64 -d)\"" >> env.tfvars
+  - echo "cf_zone_name = \"$(echo $CF_ZONE_NAME | base64 -d)\"" >> env.tfvars
+  - echo "cf_auth_email = \"$(echo $CF_AUTH_EMAIL | base64 -d)\"" >> env.tfvars
+  - echo "cf_api_key = \"$(echo $CF_API_KEY | base64 -d)\"" >> env.tfvars
+  - terraform init
+  - cat ./env.tfvars
+
+stages:
+  - validate
+  - plan
+  - apply
+
+validate:
+  stage: validate
+  script:
+    - terraform validate -var-file=env.tfvars
+
+plan:
+  stage: plan
+  script:
+    - terraform plan -var-file=env.tfvars
+  dependencies:
+    - validate
+  artifacts:
+    paths:
+      - planfile
+
+apply:
+  stage: apply
+  script:
+    - terraform apply -auto-approve -var-file=env.tfvars
+  dependencies:
+    - plan
+  when: manual

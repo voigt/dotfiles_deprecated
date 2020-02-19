@@ -2,7 +2,7 @@ provider "digitalocean" { }
 
 resource "digitalocean_droplet" "dev" {
   ssh_keys           = [23867142]         # doctl compute ssh-key list
-  image              = "ubuntu-18-10-x64"
+  image              = "ubuntu-19-10-x64"
   region             = "fra1"
   size               = "s-1vcpu-1gb"
   # size               = "s-4vcpu-8gb"

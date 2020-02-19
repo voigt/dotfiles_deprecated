@@ -23,6 +23,9 @@ before_script:
   - echo "cf_zone_name = \"$(echo $CF_ZONE_NAME | base64 -d)\"" >> env.tfvars
   - echo "cf_auth_email = \"$(echo $CF_AUTH_EMAIL | base64 -d)\"" >> env.tfvars
   - echo "cf_api_key = \"$(echo $CF_API_KEY | base64 -d)\"" >> env.tfvars
+  - echo "cf_api_key = \"$(echo $CF_API_KEY | base64 -d)\"" >> env.tfvars
+  - mkdir ~/.ssh/
+  - echo $IPAD_KEY | base64 -d > ~/.ssh/ipad_rsa
   - terraform init
   - cat ./env.tfvars
 
